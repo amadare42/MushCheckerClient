@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  Sends auth info to Mush Checker Server
 // @author       Amadare
+// @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
 // @match        http://mush.twinoid.com/
 // @updateURL    *
 // @grant        GM_xmlhttpRequest
@@ -60,6 +61,14 @@
         return localStorage.AutoCheckerUrl + command;
     }
 
+    function getTextFromResponse(responseDetails){
+        if (window.InstallTrigger !== "undefined"){
+            //Damn! It's firefox!
+            return responseDetails.responseXML.activeElement.childNodes[0].data;
+        }
+        return responseDetails.responseText;
+    }
+
     function sendInfo(info){
         if (sending)
             return;
@@ -72,7 +81,7 @@
             method: 'POST', url: url, data: JSON.stringify(info), headers: {'Content-type': 'application/json'},
             onload: function(responseDetails) {
                 setSendStandBy();
-                alert("Auth info is " + responseDetails.responseText);
+                alert("Auth info is " + getTextFromResponse(responseDetails));
             },
             ontimeout: function(){
                 setSendStandBy();
