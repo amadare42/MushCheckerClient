@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mush Checker Client
 // @namespace    MushCheckerServer
-// @version      0.1
+// @version      0.1.1
 // @description  Sends auth info to Mush Checker Server
 // @author       Amadare
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -68,7 +68,7 @@ function getSendUrl(command){
 
 function getTextFromResponse(responseDetails){
     if (!!window.InstallTrigger){
-        //Damn! It's firefox!
+        //Damn! It's firefox!`
         return responseDetails.responseXML.activeElement.childNodes[0].data;
     }
     return responseDetails.responseText;
