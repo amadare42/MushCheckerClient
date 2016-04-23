@@ -67,7 +67,7 @@ function getSendUrl(command){
 }
 
 function getTextFromResponse(responseDetails){
-    if (window.InstallTrigger !== "undefined"){
+    if (!!window.InstallTrigger){
         //Damn! It's firefox!
         return responseDetails.responseXML.activeElement.childNodes[0].data;
     }
