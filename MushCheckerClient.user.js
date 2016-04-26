@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mush Checker Client
 // @namespace    MushCheckerServer
-// @version      0.1.2
+// @version      0.1.3
 // @description  Sends auth info to Mush Checker Server
 // @author       Amadare
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -13,7 +13,6 @@
 
 (function() {
 var sending = false;
-
 
 function getIsLoggedIn(){
     return $('.notsure').length > 0;
@@ -77,7 +76,7 @@ function getTextFromResponse(responseDetails){
 function sendInfo(info){
     if (sending)
         return;
-    var url = getSendUrl("RegisterUser");
+    var url = getSendUrl("RegisterSubscriber");
     if (!url)
         return;
     setSendInProgress();
